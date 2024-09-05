@@ -1,17 +1,23 @@
 from pprint import pprint
 
-# Single
-# 1e6  -> 0.47s
-# 1e9  -> 456.67s
-# 1e12 -> nope...
+# Single (chunk_size)
+# chunk_size = 18
+#  1e6  -> 0.47s
+#  1e9  -> 456.67s
+# chunk_size = 4096
+#  1e6  -> 0.11s
+#  1e9  -> 81.92s
+# chunk_size = 4096 * 2
+#  1e6  -> 0.11s
+#  1e9  -> 79.84s
 
 def main():
-  chunk_size = 18
+  chunk_size = 4096 * 2
   main_word_map = {}
 
   buffer = ""
   is_eod = False
-  with open('./fruits_1e9.txt', 'r') as file:
+  with open('./fruits.txt', 'r') as file:
     while not is_eod:
       next_chunk =  file.read(chunk_size)
       chunk = buffer + next_chunk
